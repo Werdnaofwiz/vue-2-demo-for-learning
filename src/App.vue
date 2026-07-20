@@ -23,7 +23,7 @@ body {
   background: #f0f2f5;
 }
 
-#app {
-  min-height: 100vh;
-}
+/* #app {
+  min-height: 100dvh;
+} */
 </style>

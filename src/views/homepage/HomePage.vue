@@ -90,6 +90,11 @@ export default {
           description: "性能优化3",
           path: "/async-component",
         },
+        {
+          title: "防抖节流",
+          description: "性能优化4",
+          path: "/debounce-throttle",
+        },
       ],
     };
   },

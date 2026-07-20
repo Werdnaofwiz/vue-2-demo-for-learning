@@ -77,6 +77,11 @@ const routes = [
     name: "AsyncComponent",
     component: () => import("@/views/asynComponent/AsynComponent.vue"), // 异步组件
   },
+  {
+    path: "/debounce-throttle",
+    name: "Debounce-Throttle",
+    component: () => import("@/views/debounceThrottle/DebounceThrottle.vue"), // 防抖节流
+  },
   // 后面可以继续添加更多课题
 ];
 
