@@ -82,6 +82,11 @@ const routes = [
     name: "Debounce-Throttle",
     component: () => import("@/views/debounceThrottle/DebounceThrottle.vue"), // 防抖节流
   },
+  {
+    path: "/loadmore",
+    name: "Loadmore",
+    component: () => import("@/views/LoadMoreDemo.vue"), // 触底加载
+  },
   // 后面可以继续添加更多课题
 ];
 

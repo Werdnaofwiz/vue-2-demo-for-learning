@@ -86,7 +86,7 @@ export default {
           path: "/mouseover-mouseenter",
         },
         {
-          title: "异步列表",
+          title: "异步组件",
           description: "性能优化3",
           path: "/async-component",
         },
@@ -94,6 +94,11 @@ export default {
           title: "防抖节流",
           description: "性能优化4",
           path: "/debounce-throttle",
+        },
+        {
+          title: "触底加载",
+          description: "性能优化5",
+          path: "/loadmore",
         },
       ],
     };

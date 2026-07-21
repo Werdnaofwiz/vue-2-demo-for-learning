@@ -2,7 +2,6 @@
 <template>
   <div class="array-demo">
     <div class="header">
-      <button class="back-btn" @click="goBack">← 返回首页</button>
       <h1>📊 Vue 2 数组变异方法</h1>
       <p>学习数组的 7 个变异方法，以及 $set 的用法</p>
       <p style="color: #666; font-size: 14px">
