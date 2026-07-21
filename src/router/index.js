@@ -87,6 +87,11 @@ const routes = [
     name: "Loadmore",
     component: () => import("@/views/LoadMoreDemo.vue"), // 触底加载
   },
+  {
+    path: "/virtual-list",
+    name: "Loadmore",
+    component: () => import("@/views/VirtualList.vue"), // 虚拟列表
+  },
   // 后面可以继续添加更多课题
 ];
 
