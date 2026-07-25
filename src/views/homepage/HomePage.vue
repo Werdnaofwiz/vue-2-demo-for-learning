@@ -110,6 +110,11 @@ export default {
           description: "性能优化7",
           path: "/virtual-list-with-load-more",
         },
+        {
+          title: "虚拟列表：使用第三方库",
+          description: "性能优化8",
+          path: "/virtual-list-Using-library",
+        },
       ],
     };
   },

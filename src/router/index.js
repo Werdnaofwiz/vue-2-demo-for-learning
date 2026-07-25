@@ -95,7 +95,12 @@ const routes = [
   {
     path: "/virtual-list-with-load-more",
     name: "VirtualListWithLoadMore",
-    component: () => import("@/views/VirtualListWithLoadMore.vue"), // 虚拟列表：不一次性全部读取后端数据
+    component: () => import("@/views/VirtualListWithLoadMore.vue"), // 虚拟列表+触底下载
+  },
+  {
+    path: "/virtual-list-Using-library",
+    name: "VirtualListUsingLibrary",
+    component: () => import("@/views/VirtualListUsingThirdPartyLibrary.vue"), // 虚拟列表：使用第三方库
   },
   // 后面可以继续添加更多课题
 ];
