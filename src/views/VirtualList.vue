@@ -87,14 +87,13 @@ export default {
     startIndex() {
       if (this.list.length === 0) return 0;
       const index = Math.floor(this.scrollTop / this.itemHeight);
-      return Math.max(0, index - this.bufferSize);
+      return Math.max(0, index - this.bufferSize); // 确保索引值不为负数
     },
 
     endIndex() {
       if (this.list.length === 0) return 0;
       const container = this.$refs.scrollContainer;
       if (!container) return this.bufferSize;
-      //   const visibleCount = Math.ceil(container.clientHeight / this.itemHeight);
       const index = Math.ceil(
         (this.scrollTop + container.clientHeight) / this.itemHeight,
       );
@@ -250,3 +249,147 @@ h2 {
   background: #66b1ff;
 }
 </style>
+
+<!-- ═══════════════════════════════════════════════════════════
+      为什么不能取消 scroll-phantom 的 relative，
+      直接让 visible-area 的 absolute 针对 container？
+      ═══════════════════════════════════════════════════════════
+
+      很多人的直觉是：
+        "既然 container 已经是 relative 了，
+         那 phantom 就不需要 relative 了，
+         area 直接相对于 container 定位不就行了吗？"
+
+      这个直觉是错的。原因是：
+
+      ┌─────────────────────────────────────────────────────────┐
+      │  定位参照（relative/absolute）和滚动归属（overflow）  │
+      │  是两套完全独立的规则，它们同时作用，互不冲突。       │
+      └─────────────────────────────────────────────────────────┘
+
+      【规则一：定位参照（谁是你的坐标原点？）】
+      -----------------------------------------
+      area 的 top:0 相对于谁？
+      取决于最近的 position: relative/absolute/fixed 祖先。
+
+      【规则二：滚动归属（你会跟着滚动吗？）】
+      -----------------------------------------
+      area 是否跟着滚动条移动？
+      取决于 area 是否属于 overflow:auto 容器的“内容”。
+
+
+      现在，假设我们这样改：
+
+      .scroll-container { position: relative; overflow: auto; }
+      .scroll-phantom { /* 没有 relative，默认 static */ }
+      .visible-area { position: absolute; top: 0; }
+
+      那么：
+
+      ① 定位参照：
+         area 向上找 relative → 找到 container
+         → area 的 top:0 表示“距离 container 顶部 0px”
+         → ✅ 坐标原点没问题
+
+      ② 滚动归属：
+         area 是 container 的后代元素
+         → container 滚动时，area 作为“内容”跟着一起滚
+         → ❌ 问题来了！
+
+      当用户滚动 300px 时：
+         phantom 被卷上去了（它是内容）
+         area 也被卷上去了（它也是内容）
+
+      但是！area 的坐标参照是 container 的顶部，
+      而 container 的顶部没有动（容器本身固定）。
+
+      结果：
+         area 的布局坐标始终是“距离 container 顶部 0px”
+         但 container 滚动时，area 作为内容被卷走了
+         → 两者脱节！
+         → area 跑到视口外面去了
+         → 页面空白
+
+
+      【那原来的代码为什么能工作？】
+      -----------------------------------------
+      原代码中，area 的参照是 phantom（relative）：
+
+      .scroll-phantom { position: relative; }
+      .visible-area { position: absolute; top: 0; }
+
+      ① 定位参照：
+         area 的 top:0 表示“距离 phantom 顶部 0px”
+         → 坐标系原点在 phantom 的顶部
+
+      ② 滚动归属：
+         area 和 phantom 都是 container 的内容
+         → 滚动时，整个 phantom 往上卷
+         → area 作为 phantom 的子元素，也跟着卷
+
+      ③ 但是！translateY 出手了：
+         滚动 300px → offsetY = 300
+         area 被 translateY(300) 向下拉了 300px
+
+         向上卷了 300px（滚动）
+         向下拉了 300px（translateY）
+         → 两者抵消
+         → area 的视觉位置刚好停留在视口中央
+
+      如果参照是 container：
+         向上卷了 300px（滚动）
+         向下拉 300px（translateY）
+         但 area 的坐标原点是 container 顶部（没动）
+         → 抵消失败，area 依然在视口外
+
+
+      【一句话总结】
+      -----------------------------------------
+      取消 phantom 的 relative，
+      会让 area 的“锚点”从 phantom 顶部变成 container 顶部。
+
+      滚动时 phantom 带着内容往上走，
+      但 container 顶部不动，
+      导致 translateY 的“拉回”动作找不到正确的参照，
+      抵消失败，虚拟列表失效。
+
+      所以：scroll-phantom 的 relative 必须保留。
+      它是虚拟列表的“活动锚点”。
+      锚在 phantom 上，随滚动移动；
+      锚在 container 上，固定在原地不动。 -->
+
+<!-- 
+  ═══════════════════════════════════════════════════════════════
+  为什么保留 scroll-phantom 的 relative？
+  ═══════════════════════════════════════════════════════════════
+
+  技术上：取消它，只让 visible-area 参照 container 也能跑。
+  但设计上：保留它，是为了表达“代码的意图”。
+
+  ┌─────────────────────────────────────────────────────────────┐
+  │  scroll-container  →  提供“真实滚动”                        │
+  │       ↓                                                   │
+  │  scroll-phantom    →  提供“完整高度 + 坐标空间”（relative）│
+  │       ↓                                                   │
+  │  visible-area      →  提供“少量真实 DOM”（absolute + top:0）│
+  └─────────────────────────────────────────────────────────────┘
+
+  读代码的人第一眼看到：
+    “哦，area 是 phantom 内部的一层，它跟着 phantom 的滚动体系走，
+     只是通过 transform 调整位置。”
+
+  这符合虚拟列表的设计模型：
+    phantom = “10000 条数据的虚拟空间”
+    area    = “这个空间里当前可见的 20 条数据”
+
+  如果去掉 phantom 的 relative，读代码的人会疑惑：
+    “为什么 area 的定位参照是 container，而不是它爹 phantom？”
+    “area 和 phantom 是不是两个独立的系统？”
+
+  所以保留它，不是为了“功能必须”，而是为了“表达结构”。
+
+  经验：不要为了减少一行 CSS，而破坏代码表达的模型。
+  position: relative 存在的目的，很多时候不是“没有它功能就坏了”，
+  而是明确告诉后来人：下面这个 absolute 元素属于我这个坐标空间。
+
+  这和 Vue 源码里很多看似多余的变量封装，是同一个道理。 -->

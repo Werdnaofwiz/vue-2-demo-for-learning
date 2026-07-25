@@ -89,8 +89,13 @@ const routes = [
   },
   {
     path: "/virtual-list",
-    name: "Loadmore",
+    name: "VirtualList",
     component: () => import("@/views/VirtualList.vue"), // 虚拟列表
+  },
+  {
+    path: "/virtual-list-with-load-more",
+    name: "VirtualListWithLoadMore",
+    component: () => import("@/views/VirtualListWithLoadMore.vue"), // 虚拟列表：不一次性全部读取后端数据
   },
   // 后面可以继续添加更多课题
 ];

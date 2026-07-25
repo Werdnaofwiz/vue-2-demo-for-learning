@@ -100,11 +100,15 @@ export default {
           description: "性能优化5",
           path: "/loadmore",
         },
-
         {
           title: "虚拟列表",
           description: "性能优化6",
           path: "/virtual-list",
+        },
+        {
+          title: "虚拟列表+触底下载",
+          description: "性能优化7",
+          path: "/virtual-list-with-load-more",
         },
       ],
     };
