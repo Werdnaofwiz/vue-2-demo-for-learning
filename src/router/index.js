@@ -102,6 +102,12 @@ const routes = [
     name: "VirtualListUsingLibrary",
     component: () => import("@/views/VirtualListUsingThirdPartyLibrary.vue"), // 虚拟列表：使用第三方库
   },
+  {
+    path: "/compositing-layer-hack",
+    name: "CompositingLayerHack",
+    component: () =>
+      import("@/views/CompositingLayerHack/CompostingLayerHack.vue"), // 虚拟列表：使用第三方库
+  },
   // 后面可以继续添加更多课题
 ];
 

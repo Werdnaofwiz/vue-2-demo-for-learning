@@ -115,6 +115,11 @@ export default {
           description: "性能优化8",
           path: "/virtual-list-Using-library",
         },
+        {
+          title: "渲染分层hack",
+          description: "性能优化9",
+          path: "/compositing-layer-hack",
+        },
       ],
     };
   },
