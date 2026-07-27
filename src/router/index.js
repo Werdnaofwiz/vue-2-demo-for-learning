@@ -108,6 +108,11 @@ const routes = [
     component: () =>
       import("@/views/CompositingLayerHack/CompostingLayerHack.vue"), // 虚拟列表：使用第三方库
   },
+  {
+    path: "/custom-toast-demo",
+    name: "CustomToastDemo",
+    component: () => import("@/views/customToast/CustomToastDemo.vue"), // 利用vue.extend实现自定义toast
+  },
   // 后面可以继续添加更多课题
 ];
 

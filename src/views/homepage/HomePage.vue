@@ -120,6 +120,11 @@ export default {
           description: "性能优化9",
           path: "/compositing-layer-hack",
         },
+        {
+          title: "vue.extend自定义toast",
+          description: "UI组件库$toast效果的函数式实现",
+          path: "/custom-toast-demo",
+        },
       ],
     };
   },
