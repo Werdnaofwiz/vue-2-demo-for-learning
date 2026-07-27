@@ -8,110 +8,206 @@ Vue.use(VueRouter);
 
 // 2. 定义路由
 const routes = [
+  // 首页
   {
     path: "/",
     name: "HomePage",
-    component: () => import("@/views/homepage/HomePage.vue"), // 首页
+    component: () => import("@/views/homepage/HomePage.vue"),
   },
+  // 数组响应式
   {
     path: "/array-demo",
     name: "ArrayDemo",
-    component: () => import("@/views/ArrayDemo.vue"), // 数组课题
+    component: () => import("@/views/ArrayDemo.vue"),
+    meta: {
+      title: "数组响应式",
+      description: "学习 Vue 2 数组的 7 个变异方法",
+    },
   },
+  // Mixin
   {
     path: "/mixin-demo",
     name: "MixinDemo",
-    component: () => import("@/views/MixinDemo.vue"), // Mixin 课题
+    component: () => import("@/views/MixinDemo.vue"),
+    meta: {
+      title: "Mixin",
+      description: "学习 Vue 2 中的 Mixin 特性",
+    },
   },
+  // 展示Mixin的冲突
   {
     path: "/mixin-conflict-demo",
     name: "MixinConflictDemo",
-    component: () => import("@/views/MixinsConflictDemo.vue"), // Mixin 冲突 课题
+    component: () => import("@/views/MixinsConflictDemo.vue"),
+    meta: {
+      title: "展示Mixin的冲突",
+      description: "展示 Vue 2 中的 Mixin 的冲突特性",
+    },
   },
+  // extends
   {
     path: "/extends-demo",
     name: "ExtendsDemo",
-    component: () => import("@/views/extends/ChildComponent.vue"), // extends 课题
+    component: () => import("@/views/extends/ChildComponent.vue"),
+    meta: {
+      title: "extends",
+      description: "学习 Vue 2 中的 extends 特性",
+    },
   },
+  // 自定义指令
   {
     path: "/custom-directive-demo",
     name: "CustomDirectiveDemo",
-    component: () => import("@/views/customDirectives/CustomDirectiveDemo.vue"), // 自定义指令 课题
+    component: () => import("@/views/customDirectives/CustomDirectiveDemo.vue"),
+    meta: {
+      title: "自定义指令",
+      description: "学习 Vue 2 中的自定义指令",
+    },
   },
+  // 自定义指令高级案例
   {
     path: "/directive-advanced-demo",
     name: "DirectiveAdvanced",
-    component: () => import("@/views/DirectiveAdvenced.vue"), // 自定义指令高级案例
+    component: () => import("@/views/DirectiveAdvenced.vue"),
+    meta: {
+      title: "自定义指令高级案例",
+      description: "学习 Vue 2 中的自定义指令高级用法",
+    },
   },
+  // 单向数据流案例
   {
     path: "/single-direction-data-flow",
     name: "SingleDirectionDataFlow",
     component: () =>
-      import("@/views/singleDirectionDataFlow/ParentComponent.vue"), // 单向数据流案例
+      import("@/views/singleDirectionDataFlow/ParentComponent.vue"),
+    meta: {
+      title: "单向数据流",
+      description: "学习 Vue 2 中的单向数据流概念",
+    },
   },
+  // $set
   {
     path: "/dollar-set",
     name: "DollarSet",
-    component: () => import("@/views/DollarSet.vue"), // $set
+    component: () => import("@/views/DollarSet.vue"),
+    meta: {
+      title: "$set案例展示",
+      description: "学习 Vue 2 中的$set用法",
+    },
   },
+  // v-if和v-for不要连用
   {
     path: "/v-if-and-v-for",
     name: "VifVfor",
     component: () =>
-      import("@/views/notUsingVifVforTogether/notUsingVifVforTogether.vue"), // v-if和v-for不要连用
+      import("@/views/notUsingVifVforTogether/notUsingVifVforTogether.vue"),
+    meta: {
+      title: "v-if v-for不要连用",
+      description: "性能优化1",
+    },
   },
+  // v-for的事件代理
   {
     path: "/v-for-event-delegation",
     name: "VForEvenDelegation",
     component: () =>
-      import("@/views/vForEventDelegation/vForEventDelegation.vue"), // v-for的事件代理
+      import("@/views/vForEventDelegation/vForEventDelegation.vue"),
+    meta: {
+      title: "v-for事件代理优化",
+      description: "性能优化2",
+    },
   },
+  // mouserover冒泡机制
   {
     path: "/mouseover-mouseenter",
     name: "MouseroverMouserenter",
     component: () =>
-      import("@/views/mouserOverMouserEnter/MouserOverMouserEnter.vue"), // mouserover冒泡
+      import("@/views/mouserOverMouserEnter/MouserOverMouserEnter.vue"),
+    meta: {
+      title: "mouserover冒泡机制",
+      description: "性能优化2知识补充",
+    },
   },
+  // 异步组件
   {
     path: "/async-component",
     name: "AsyncComponent",
-    component: () => import("@/views/asynComponent/AsynComponent.vue"), // 异步组件
+    component: () => import("@/views/asynComponent/AsynComponent.vue"),
+    meta: {
+      title: "异步组件",
+      description: "性能优化3",
+    },
   },
+  // 防抖节流
   {
     path: "/debounce-throttle",
     name: "Debounce-Throttle",
-    component: () => import("@/views/debounceThrottle/DebounceThrottle.vue"), // 防抖节流
+    component: () => import("@/views/debounceThrottle/DebounceThrottle.vue"),
+    meta: {
+      title: "防抖节流",
+      description: "性能优化4",
+    },
   },
+  // 触底加载
   {
     path: "/loadmore",
     name: "Loadmore",
-    component: () => import("@/views/LoadMoreDemo.vue"), // 触底加载
+    component: () => import("@/views/LoadMoreDemo.vue"),
+    meta: {
+      title: "触底加载",
+      description: "性能优化5",
+    },
   },
+  // 虚拟列表
   {
     path: "/virtual-list",
     name: "VirtualList",
-    component: () => import("@/views/VirtualList.vue"), // 虚拟列表
+    component: () => import("@/views/VirtualList.vue"),
+    meta: {
+      title: "虚拟列表",
+      description: "性能优化6",
+    },
   },
+  // 虚拟列表+触底下载
   {
     path: "/virtual-list-with-load-more",
     name: "VirtualListWithLoadMore",
-    component: () => import("@/views/VirtualListWithLoadMore.vue"), // 虚拟列表+触底下载
+    component: () => import("@/views/VirtualListWithLoadMore.vue"),
+    meta: {
+      title: "虚拟列表+触底下载",
+      description: "性能优化7",
+    },
   },
+  // 虚拟列表：使用第三方库
   {
     path: "/virtual-list-Using-library",
     name: "VirtualListUsingLibrary",
-    component: () => import("@/views/VirtualListUsingThirdPartyLibrary.vue"), // 虚拟列表：使用第三方库
+    component: () => import("@/views/VirtualListUsingThirdPartyLibrary.vue"),
+    meta: {
+      title: "虚拟列表：使用第三方库",
+      description: "性能优化8",
+    },
   },
+  // 渲染分层hack
   {
     path: "/compositing-layer-hack",
     name: "CompositingLayerHack",
     component: () =>
-      import("@/views/CompositingLayerHack/CompostingLayerHack.vue"), // 虚拟列表：使用第三方库
+      import("@/views/CompositingLayerHack/CompostingLayerHack.vue"),
+    meta: {
+      title: "渲染分层hack",
+      description: "性能优化9",
+    },
   },
+  // 利用vue.extend实现自定义toast
   {
     path: "/custom-toast-demo",
     name: "CustomToastDemo",
-    component: () => import("@/views/customToast/CustomToastDemo.vue"), // 利用vue.extend实现自定义toast
+    component: () => import("@/views/customToast/CustomToastDemo.vue"),
+    meta: {
+      title: "vue.extend自定义toast",
+      description: "UI组件库$toast效果的函数式实现",
+    },
   },
   // 后面可以继续添加更多课题
 ];
