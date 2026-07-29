@@ -209,6 +209,16 @@ const routes = [
       description: "UI组件库$toast效果的函数式实现",
     },
   },
+  // beforeCreate钩子能干什么
+  {
+    path: "/before-create",
+    name: "BeforeCreate",
+    component: () => import("@/views/beforeCreate/beforeCreate.vue"),
+    meta: {
+      title: "beforeCreate钩子能干什么",
+      description: "声明周期钩子函数1",
+    },
+  },
   // 后面可以继续添加更多课题
 ];
 
