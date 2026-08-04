@@ -193,7 +193,7 @@ const routes = [
     path: "/compositing-layer-hack",
     name: "CompositingLayerHack",
     component: () =>
-      import("@/views/CompositingLayerHack/CompostingLayerHack.vue"),
+      import("@/views/compositingLayerHack/CompostingLayerHack.vue"),
     meta: {
       title: "渲染分层hack",
       description: "性能优化9",
@@ -217,6 +217,17 @@ const routes = [
     meta: {
       title: "beforeCreate钩子能干什么",
       description: "声明周期钩子函数1",
+    },
+  },
+  // 组件通信
+  {
+    path: "/component-communication",
+    name: "ComponentCommunication",
+    component: () =>
+      import("@/views/componentCommunication/ComponentCommunication.vue"),
+    meta: {
+      title: "组件通信",
+      description: "常用组件通信方式复习",
     },
   },
   // 后面可以继续添加更多课题
