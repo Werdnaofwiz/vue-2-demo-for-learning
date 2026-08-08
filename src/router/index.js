@@ -230,6 +230,16 @@ const routes = [
       description: "常用组件通信方式复习",
     },
   },
+  // 瀑布流（手动实现）
+  {
+    path: "/waterfall",
+    name: "Waterfall",
+    component: () => import("@/views/WaterfallDemo.vue"),
+    meta: {
+      title: "瀑布流（手动实现）",
+      description: "贪心算法手写实现多列flex瀑布流",
+    },
+  },
   // 后面可以继续添加更多课题
 ];
 
