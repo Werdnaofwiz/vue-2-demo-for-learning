@@ -240,6 +240,16 @@ const routes = [
       description: "贪心算法手写实现多列flex瀑布流",
     },
   },
+  // vuex基本展示
+  {
+    path: "/vuex",
+    name: "vuex",
+    component: () => import("@/views/VuexDemo.vue"),
+    meta: {
+      title: "vuex基本展示",
+      description: "vuex的一个小范例",
+    },
+  },
   // 后面可以继续添加更多课题
 ];
 
