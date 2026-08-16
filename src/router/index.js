@@ -243,11 +243,21 @@ const routes = [
   // vuex基本展示
   {
     path: "/vuex",
-    name: "vuex",
+    name: "Vuex",
     component: () => import("@/views/VuexDemo.vue"),
     meta: {
       title: "vuex基本展示",
       description: "vuex的一个小范例",
+    },
+  },
+  // 作用域插槽
+  {
+    path: "/scope-slot",
+    name: "ScopeSlot",
+    component: () => import("@/views/scopeSlot/ParentComponent.vue"),
+    meta: {
+      title: "作用域插槽应用",
+      description: "典型应用，组件库的table组件",
     },
   },
   // 后面可以继续添加更多课题
