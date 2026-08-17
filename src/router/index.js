@@ -260,6 +260,16 @@ const routes = [
       description: "典型应用，组件库的table组件",
     },
   },
+  // v-if加keys防止复用
+  {
+    path: "/v-if",
+    name: "VIfKeys",
+    component: () => import("@/views/VIfKeys.vue"),
+    meta: {
+      title: "v-if加keys防止复用",
+      description: "v-if加keys防止数据在input框残留",
+    },
+  },
   // 后面可以继续添加更多课题
 ];
 
